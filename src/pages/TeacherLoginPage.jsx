@@ -10,7 +10,6 @@ export default function TeacherLoginPage() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('01012345678');
   const [password, setPassword] = useState('123456');
-  const [centerName, setCenterName] = useState('سنتر النور التعليمي');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -22,7 +21,7 @@ export default function TeacherLoginPage() {
     try {
       let res;
       if (isRegister) {
-        res = await authAPI.teacherRegister({ name, phone, password, centerName });
+        res = await authAPI.teacherRegister({ name, phone, password });
       } else {
         res = await authAPI.teacherLogin({ phone, password });
       }
@@ -69,10 +68,10 @@ export default function TeacherLoginPage() {
 
         <div>
           <h1 className="text-2xl font-black text-slate-900">
-            {isRegister ? 'تسجيل معلم أو سنتر جديد' : 'تسجيل دخول المعلم'}
+            {isRegister ? 'إنشاء حساب معلم جديد' : 'تسجيل دخول المعلم'}
           </h1>
           <p className="text-xs text-slate-500 mt-1">
-            {isRegister ? 'أنشئ حسابك لإدارة طلابك وبابل شيت مذكراتك' : 'أدخل بياناتك للوصول للوحة الامتحانات والنتائج'}
+            {isRegister ? 'أنشئ حسابك لإدارة طلابك وامتحاناتك بسهولة' : 'أدخل بياناتك للوصول للوحة الامتحانات والنتائج'}
           </p>
         </div>
 
@@ -97,30 +96,17 @@ export default function TeacherLoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {isRegister && (
-            <>
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">اسم المعلم *</label>
-                <input
-                  type="text"
-                  placeholder="أ. محمد أحمد"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">اسم السنتر أو الأكاديمية</label>
-                <input
-                  type="text"
-                  placeholder="مثال: سنتر الأوائل"
-                  value={centerName}
-                  onChange={(e) => setCenterName(e.target.value)}
-                  className="w-full border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
-                />
-              </div>
-            </>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">اسم المعلم *</label>
+              <input
+                type="text"
+                placeholder="أ. محمد أحمد"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full border border-slate-300 rounded-xl p-3 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
+                required
+              />
+            </div>
           )}
 
           <div>

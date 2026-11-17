@@ -7,7 +7,6 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('01012345678');
   const [password, setPassword] = useState('123456');
-  const [centerName, setCenterName] = useState('سنتر النور التعليمي');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -21,7 +20,7 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
     try {
       let res;
       if (isRegister) {
-        res = await authAPI.register({ name, phone, password, centerName });
+        res = await authAPI.register({ name, phone, password });
       } else {
         res = await authAPI.login({ phone, password });
       }
@@ -91,29 +90,17 @@ export default function AuthModal({ isOpen, onClose, onLoginSuccess }) {
 
         <form onSubmit={handleSubmit} className="space-y-3.5">
           {isRegister && (
-            <>
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">اسم المعلم *</label>
-                <input
-                  type="text"
-                  placeholder="أ. محمد أحمد"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-slate-300 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1">اسم السنتر أو الأكاديمية</label>
-                <input
-                  type="text"
-                  placeholder="سنتر الأوائل"
-                  value={centerName}
-                  onChange={(e) => setCenterName(e.target.value)}
-                  className="w-full border border-slate-300 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
-                />
-              </div>
-            </>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 mb-1">اسم المعلم *</label>
+              <input
+                type="text"
+                placeholder="أ. محمد أحمد"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full border border-slate-300 rounded-xl p-2.5 text-xs focus:ring-2 focus:ring-brand-500 focus:outline-none"
+                required
+              />
+            </div>
           )}
 
           <div>
